@@ -1,5 +1,7 @@
+import * as express from 'express';
 import loginRouter from './login';
 
-export default {
-  loginRouter,
-};
+const routers = express.Router();
+routers.use('/login', loginRouter);
+
+export default routers;

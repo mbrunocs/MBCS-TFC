@@ -1,15 +1,17 @@
+import * as cors from 'cors';
 import * as express from 'express';
+import routers from './routers/index';
 
 class App {
   public app: express.Express;
 
   constructor() {
     this.app = express();
-
+    this.app.use(cors());
     this.config();
 
-    // Não remover essa rota
-    this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.get('/', (_req, res) => res.json({ ok: true })); // Não remover essa rota
+    this.app.use(routers);
   }
 
   private config():void {
