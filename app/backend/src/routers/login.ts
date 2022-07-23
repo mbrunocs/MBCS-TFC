@@ -1,13 +1,9 @@
-import * as express from 'express';
+import { Router } from 'express';
+import validate from '../middlewares/requiresUser';
 
-const router = express.Router();
-// const userControl = require('../controllers/userControl');
-// const { userReqPost } = require('../middlewares/userReqValid');
-// const validateJWT = require('../middlewares/validateJWT');
+const router = Router();
 
-router.get('/', (_req, res) => res.status(400).json({ message: 'loginPage' }));
-// router.post('/', userReqPost, userControl.createUser);
-// router.get('/:id', validateJWT, userControl.findUserById);
-// router.delete('/me', validateJWT, userControl.deleteUser);
+router.get('/validate', (_req, res) => res.status(400).json({ message: 'loginPage' }));
+router.post('/', validate.loginDoc, (_req, res) => res.status(400).json({ message: 'loginPage' }));
 
 export default router;
