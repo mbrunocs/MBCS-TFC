@@ -1,5 +1,4 @@
 import jwt = require('jsonwebtoken');
-import IJWT from '../interfaces/IJwt';
 
 const SECRET_ = process.env.JWT_SECRET;
 const SECRET = SECRET_ as string;
@@ -8,13 +7,13 @@ const SECRET = SECRET_ as string;
 //   algorithm: 'HS256',
 // };
 
-const generateToken = (data: IJWT) => jwt.sign(
+const generateToken = (data = {}) => jwt.sign(
   { data },
   SECRET,
   { expiresIn: '1d' },
 );
 
-const auth = (data = {}) => jwt.sign({ data }, SECRET, { expiresIn: '1d', algorithm: 'HS256' });
+const auth = (token: string) => jwt.verify(token, SECRET);
 
 export default {
   generateToken,
