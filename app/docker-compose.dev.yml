@@ -23,7 +23,7 @@ services:
     working_dir: /app-backend
     command: npm run dev
     volumes: 
-      - ./backend:/app-backend
+      - ./backend/src:/app-backend/src
     platform: linux/x86_64
     depends_on:
       db:
