@@ -11,7 +11,7 @@ const login = async (req: Request, res: Response) => {
   if (!auth.token) return res.status(401).json(auth);
 
   req.headers.authorization = auth.token;
-  return res.status(201).json(auth);
+  return res.status(200).json(auth);
 };
 
 const checkUser = (req: Request, res: Response) => {
