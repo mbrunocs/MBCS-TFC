@@ -13,7 +13,9 @@ const loginRequirer = Joi.object({
   email: Joi.string().email().required().messages({
     'string.empty': 'All fields must be filled',
   }),
-  password: Joi.string().min(6).required(),
+  password: Joi.string().min(6).required().messages({
+    'string.empty': 'All fields must be filled',
+  }),
 });
 
 const userDoc = (req: Request, res: Response, next: NextFunction) => {
