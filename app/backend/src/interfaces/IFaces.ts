@@ -22,3 +22,20 @@ export interface ITeam {
 }
 
 export type ITeams = [ ITeam ];
+
+export interface IMatch {
+  homeTeam: number,
+  homeTeamGoals: number,
+  awayTeam: number,
+  awayTeamGoals: number,
+}
+
+export interface IMatchProgress extends IMatch {
+  id?: number,
+  inProgress: boolean,
+}
+
+export interface InUpdate {
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+}
