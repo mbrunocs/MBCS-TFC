@@ -15,3 +15,10 @@ export interface IJwt {
   token?: string;
   message?: string;
 }
+
+export interface ITeam {
+  id?: number;
+  teamName: string;
+}
+
+export type ITeams = [ ITeam ];
