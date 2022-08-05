@@ -5,6 +5,6 @@ import controlTeams from '../controllers/controlTeams';
 const router = Router();
 
 router.get('/', controlTeams.loadTeams);
-// router.post('/', validate.loginDoc, controlLogin.login);
+router.get('/:id', controlTeams.getTeamById);
 
 export default router;
