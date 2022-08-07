@@ -1,4 +1,4 @@
-import { IMatchProgress } from '../interfaces/IFaces';
+import { IMatchProgress, IMatch } from '../interfaces/IFaces';
 import Matches from '../database/models/match';
 import Teams from '../database/models/team';
 
@@ -19,7 +19,13 @@ const getMatchById = async (id: number): Promise<IMatchProgress> => {
   return match;
 };
 
+const insertMatch = async (data: IMatch): Promise<IMatchProgress> => {
+  const match = await Matches.create(data) as IMatchProgress;
+  return match;
+};
+
 export default {
   loadMatches,
   getMatchById,
+  insertMatch,
 };
