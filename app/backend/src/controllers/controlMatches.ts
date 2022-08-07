@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import matchService from '../services/matches'; // Serviço para consultar os times
-import { IMatch } from '../interfaces/IFaces'; // Interface dos times
+import { IMatch, IMatchProgress } from '../interfaces/IFaces'; // Interface dos times
 
 const loadMatches = async (req: Request, res: Response) => {
   const matches = await matchService.loadMatches() as IMatch[];
@@ -15,7 +15,16 @@ const getMatchById = async (req: Request, res: Response) => {
   return res.status(200).json(match);
 };
 
+const newMatch = async (req: Request, res: Response) => {
+  const data = req.body as IMatch;
+  const dataMatch = { ...data, inProgress: true } as IMatchProgress;
+  const match = await matchService.insertMatch(dataMatch) as IMatchProgress;
+
+  return res.status(201).json(match);
+};
+
 export default {
   loadMatches,
   getMatchById,
+  newMatch,
 };
