@@ -24,8 +24,13 @@ const insertMatch = async (data: IMatch): Promise<IMatchProgress> => {
   return match;
 };
 
+const finishMatch = async (id: number): Promise<void> => {
+  await Matches.update({ inProgress: false }, { where: { id } });
+};
+
 export default {
   loadMatches,
   getMatchById,
   insertMatch,
+  finishMatch,
 };

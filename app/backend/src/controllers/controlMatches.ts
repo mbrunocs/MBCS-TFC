@@ -23,8 +23,16 @@ const newMatch = async (req: Request, res: Response) => {
   return res.status(201).json(match);
 };
 
+const toEndMatch = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  await matchService.finishMatch(+id);
+
+  return res.status(200).json({ message: 'Finished' });
+};
+
 export default {
   loadMatches,
   getMatchById,
   newMatch,
+  toEndMatch,
 };
