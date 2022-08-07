@@ -35,7 +35,7 @@ export interface IMatchProgress extends IMatch {
   inProgress: boolean,
 }
 
-export interface InUpdate {
+export interface IMatchUpdate {
   homeTeamGoals: number;
   awayTeamGoals: number;
 }

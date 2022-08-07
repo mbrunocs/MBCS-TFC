@@ -1,4 +1,4 @@
-import { IMatchProgress, IMatch } from '../interfaces/IFaces';
+import { IMatchProgress, IMatch, IMatchUpdate } from '../interfaces/IFaces';
 import Matches from '../database/models/match';
 import Teams from '../database/models/team';
 
@@ -28,9 +28,14 @@ const finishMatch = async (id: number): Promise<void> => {
   await Matches.update({ inProgress: false }, { where: { id } });
 };
 
+const updateMatch = async (id: number, data: IMatchUpdate): Promise<void> => {
+  await Matches.update(data, { where: { id } });
+};
+
 export default {
   loadMatches,
   getMatchById,
   insertMatch,
   finishMatch,
+  updateMatch,
 };

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import matchService from '../services/matches'; // Serviço para consultar os times
-import { IMatch, IMatchProgress } from '../interfaces/IFaces'; // Interface dos times
+import { IMatch, IMatchProgress, IMatchUpdate } from '../interfaces/IFaces'; // Interface dos times
 
 const loadMatches = async (req: Request, res: Response) => {
   const matches = await matchService.loadMatches() as IMatch[];
@@ -30,9 +30,19 @@ const toEndMatch = async (req: Request, res: Response) => {
   return res.status(200).json({ message: 'Finished' });
 };
 
+const upScore = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const data = req.body as IMatchUpdate;
+  await matchService.updateMatch(+id, data);
+  const match = await matchService.getMatchById(+id) as IMatch;
+
+  return res.status(200).json(match);
+};
+
 export default {
   loadMatches,
   getMatchById,
   newMatch,
   toEndMatch,
+  upScore,
 };
