@@ -13,7 +13,7 @@ export interface ILeaderboard {
   efficiency: number
 }
 
-export interface ITeamMatches extends Teams {
+export interface ITeamHMatches extends Teams {
   teamName: string;
   homeMatches: [{
     homeTeamGoals: number;
@@ -21,10 +21,19 @@ export interface ITeamMatches extends Teams {
   }];
 }
 
-export interface ITeamAwayMatches extends Teams {
+export interface ITeamAMatches extends Teams {
   teamName: string;
   awayMatches: [{
     homeTeamGoals: number;
     awayTeamGoals: number;
   }];
+}
+
+export interface ITeamAllMatches extends ITeamHMatches, ITeamAMatches {
+}
+
+export interface ICalcTypes {
+  home: () => number;
+  away: () => number;
+  all: () => number;
 }

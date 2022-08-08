@@ -1,4 +1,4 @@
-import { Model, STRING } from 'sequelize';
+import { Model, STRING, NUMBER } from 'sequelize';
 import db from '.';
 import Match from './match';
 
@@ -8,6 +8,11 @@ class Team extends Model {
 }
 
 Team.init({
+  id: {
+    type: NUMBER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   teamName: STRING,
 }, {
   underscored: true,
