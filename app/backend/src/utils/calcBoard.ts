@@ -107,7 +107,7 @@ const calcGoalsBalance = (oper: keyof ICalcTypes, team: ITeamAllMatches) => {
   const result: ICalcTypes = {
     home: () => (calcGoalsFavor('home', team) - calcGoalsOwn('home', team)),
     away: () => (calcGoalsFavor('away', team) - calcGoalsOwn('away', team)),
-    all: () => (result.home() - result.away()),
+    all: () => (calcGoalsFavor('all', team) - calcGoalsOwn('all', team)),
   };
   return result[oper]();
 };
@@ -116,7 +116,7 @@ const calcEfficiency = (oper: keyof ICalcTypes, team: ITeamAllMatches) => {
   const result: ICalcTypes = {
     home: () => ((calcPoints('home', team) / (calcGames('home', team) * 3)) * 100),
     away: () => ((calcPoints('away', team) / (calcGames('away', team) * 3)) * 100),
-    all: () => (result.home() - result.away()),
+    all: () => ((calcPoints('all', team) / (calcGames('all', team) * 3)) * 100),
   };
   return result[oper]().toFixed(2);
 };
